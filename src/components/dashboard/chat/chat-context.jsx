@@ -2,20 +2,10 @@
 
 import * as React from "react";
 
-import { enhanceText } from "@/api/azure-openai";
-import { useAuth } from "@/auth/AuthContext";
-import { KNOWLEDGE_BASE } from "@/data/knowledge-base";
 
 const AI_USER_ID = "USR-AI";
-const AI_SYSTEM_PROMPT = `You are RainierAI, a helpful AI assistant built into the CloudCoro CRM platform.
-You help users with questions about contracts, task orders, invoices, cases, timesheets, and general CRM usage.
-You are friendly, concise, and professional. Keep responses short and actionable.
-If asked about specific data you don't have access to, suggest where the user can find it in the app.
-You may use markdown formatting in your responses — links, bold, bullet lists are all supported.
-
-Use the following knowledge base to answer user questions accurately:
-
-${KNOWLEDGE_BASE}`;
+const AI_SYSTEM_PROMPT = `You are an AI Assistant, a helpful assistant built into the application.
+You are friendly, concise, and professional. Keep responses short and actionable.`;
 
 function noop() {
 	// No operation
@@ -51,14 +41,13 @@ export function ChatProvider({
 	const [messages, setMessages] = React.useState(new Map());
 	const [openDesktopSidebar, setOpenDesktopSidebar] = React.useState(true);
 	const [openMobileSidebar, setOpenMobileSidebar] = React.useState(false);
-	const { auth } = useAuth();
 	const currentUser = React.useMemo(
 		() => ({
-			id: auth?.user?.id ?? "USR-000",
-			name: auth?.user?.name ?? "Me",
-			avatar: auth?.user?.avatar ?? null,
+			id: "USR-000",
+			name: "Sofia Rivers",
+			avatar: "/assets/avatar.png",
 		}),
-		[auth?.user?.id, auth?.user?.name, auth?.user?.avatar]
+		[]
 	);
 
 	React.useEffect(() => {
@@ -188,7 +177,7 @@ export function ChatProvider({
 				id: `MSG-AI-TYPING`,
 				threadId,
 				type: "text",
-				author: { id: AI_USER_ID, name: "RainierAI", avatar: "/assets/avatar-rainier-ai.svg" },
+				author: { id: AI_USER_ID, name: "AI Assistant", avatar: "/assets/avatar-ai.svg" },
 				content: "Thinking...",
 				createdAt: new Date(),
 			};
@@ -224,7 +213,7 @@ export function ChatProvider({
 					id: `MSG-AI-${Date.now()}`,
 					threadId,
 					type: "text",
-					author: { id: AI_USER_ID, name: "RainierAI", avatar: "/assets/avatar-rainier-ai.svg" },
+					author: { id: AI_USER_ID, name: "AI Assistant", avatar: "/assets/avatar-ai.svg" },
 					content: aiContent,
 					createdAt: new Date(),
 				};
@@ -241,7 +230,7 @@ export function ChatProvider({
 					id: `MSG-AI-ERR-${Date.now()}`,
 					threadId,
 					type: "text",
-					author: { id: AI_USER_ID, name: "RainierAI", avatar: "/assets/avatar-rainier-ai.svg" },
+					author: { id: AI_USER_ID, name: "AI Assistant", avatar: "/assets/avatar-ai.svg" },
 					content: "Sorry, I'm having trouble connecting right now. Please try again in a moment.",
 					createdAt: new Date(),
 				};

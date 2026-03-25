@@ -9,11 +9,9 @@ import Typography from "@mui/material/Typography";
 
 import { dayjs } from "@/lib/dayjs";
 import { AiMarkdown } from "@/components/core/ai-markdown";
-import { useAuth } from "@/auth/AuthContext";
 
 export function MessageBox({ message }) {
-	const { auth } = useAuth();
-	const currentUserId = auth?.user?.id;
+	const currentUserId = "USR-000";
 	const position = currentUserId && message.author.id === currentUserId ? "right" : "left";
 
 	return (

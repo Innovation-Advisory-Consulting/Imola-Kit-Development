@@ -12,7 +12,7 @@ import { TextAaIcon } from "@phosphor-icons/react/dist/ssr/TextAa";
 import { TextAlignLeftIcon } from "@phosphor-icons/react/dist/ssr/TextAlignLeft";
 import { TranslateIcon } from "@phosphor-icons/react/dist/ssr/Translate";
 import { XIcon } from "@phosphor-icons/react/dist/ssr/X";
-import { RainierAiIcon } from "@/components/core/rainier-ai-icon";
+import { AiIcon } from "@/components/core/rainier-ai-icon";
 
 import { enhanceText, BASE_AI_ACTIONS } from "@/api/azure-openai";
 import { useUserPreferences, AVAILABLE_LANGUAGES } from "@/components/core/user-preferences-context";
@@ -90,9 +90,9 @@ export function AiTextAssist({ text, onAccept }) {
 	return (
 		<Box sx={{ mt: 1 }}>
 			<Stack direction="row" spacing={1} sx={{ alignItems: "center", flexWrap: "wrap", gap: 1 }}>
-				<RainierAiIcon sx={{ fontSize: "var(--icon-fontSize-sm)", color: "var(--mui-palette-primary-main)" }} />
+				<AiIcon sx={{ fontSize: "var(--icon-fontSize-sm)", color: "var(--mui-palette-primary-main)" }} />
 				<Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, mr: 0.5 }}>
-					RainierAI
+					AI Assistant
 				</Typography>
 				{actions.map((action) => {
 					const Icon = iconMap[action.icon];
@@ -116,7 +116,7 @@ export function AiTextAssist({ text, onAccept }) {
 				<Box sx={{ mt: 1.5 }}>
 					<LinearProgress sx={{ borderRadius: 1 }} />
 					<Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: "block" }}>
-						RainierAI is processing...
+						AI Assistant is processing...
 					</Typography>
 				</Box>
 			) : null}
@@ -151,7 +151,7 @@ export function AiTextAssist({ text, onAccept }) {
 					}}
 				>
 					<Stack direction="row" spacing={1} sx={{ alignItems: "center", mb: 1 }}>
-						<RainierAiIcon sx={{ fontSize: "var(--icon-fontSize-sm)", color: "var(--mui-palette-primary-main)" }} />
+						<AiIcon sx={{ fontSize: "var(--icon-fontSize-sm)", color: "var(--mui-palette-primary-main)" }} />
 						<Typography variant="subtitle2" color="primary.main">
 							{actions.find((a) => a.key === activeAction)?.label || "Suggestion"}
 						</Typography>

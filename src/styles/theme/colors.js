@@ -1,4 +1,4 @@
-export const cloudCoroGreen = {
+export const limeGreen = {
 	50: "#f7fee7",
 	100: "#ecfccb",
 	200: "#d9f99d",
@@ -152,7 +152,7 @@ export const tomatoOrange = {
 	950: "#440608",
 };
 
-// --- CloudCORO Design System Palettes ---
+// --- Design System Palettes ---
 
 export const cloud = {
 	50: "#eff6ff",

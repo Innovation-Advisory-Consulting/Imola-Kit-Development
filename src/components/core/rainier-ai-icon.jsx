@@ -1,7 +1,7 @@
 import * as React from "react"
 import SvgIcon from "@mui/material/SvgIcon"
 
-export function RainierAiIcon(props) {
+export function AiIcon(props) {
   return (
     <SvgIcon {...props} viewBox="55 81 12 10">
       <path

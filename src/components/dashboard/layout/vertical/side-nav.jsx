@@ -70,7 +70,7 @@ export function SideNav({ color = "evident", items = [] }) {
 			</Box>
 			<Box sx={{ p: 2, pt: 0 }}>
 				<Typography variant="caption" sx={{ color: "var(--NavGroup-title-color)", opacity: 0.5 }}>
-					Rainier v2.7.0
+					Imola Kit v1.0.0
 				</Typography>
 			</Box>
 		</Box>

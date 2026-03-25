@@ -15,45 +15,45 @@ import { QuestionIcon } from "@phosphor-icons/react/dist/ssr/Question";
 const faqs = [
 	{
 		id: "FAQ-1",
-		question: "How does CloudCORO ensure data security and compliance?",
+		question: "How does Imola Kit ensure data security and compliance?",
 		answer:
-			"CloudCORO is built on Salesforce Government Cloud with FedRAMP authorization. All data is encrypted at rest and in transit using AES-256 encryption. We maintain SOC 2 Type II certification, support CJIS compliance, and meet FISMA requirements. Role-based access control ensures staff only see data relevant to their responsibilities.",
+			"Imola Kit is built with security best practices including encryption at rest and in transit using AES-256 encryption. Role-based access control ensures users only see data relevant to their responsibilities.",
 	},
 	{
 		id: "FAQ-2",
-		question: "Can CloudCORO integrate with our existing legacy systems?",
+		question: "Can Imola Kit integrate with existing systems?",
 		answer:
-			"Yes. CloudCORO provides pre-built connectors for common government systems including SAP, Oracle, IBM mainframes, and state/county data exchanges. Our REST and SOAP API framework supports custom integrations, and our team has experience migrating data from legacy systems with zero downtime.",
+			"Yes. Imola Kit provides REST and SOAP API frameworks that support custom integrations with a wide variety of systems and services.",
 	},
 	{
 		id: "FAQ-3",
-		question: "How do mobile field apps work in areas without internet connectivity?",
+		question: "How do mobile apps work in areas without internet connectivity?",
 		answer:
-			"Our mobile apps use an offline-first architecture. Field staff can download assignments, complete inspections, capture photos and signatures, and fill out forms entirely offline. All data syncs automatically when connectivity is restored, with conflict resolution built in to handle concurrent updates.",
+			"Our mobile apps use an offline-first architecture. Users can work entirely offline, and all data syncs automatically when connectivity is restored, with conflict resolution built in to handle concurrent updates.",
 	},
 	{
 		id: "FAQ-4",
 		question: "What is the typical implementation timeline?",
 		answer:
-			"A standard CloudCORO deployment takes 12-16 weeks for core functionality, including citizen portal, back-office system, and mobile apps. Complex integrations or custom workflows may extend the timeline. We follow an agile methodology with phased go-lives so your agency sees value within the first 6 weeks.",
+			"A standard Imola Kit deployment takes 12-16 weeks for core functionality. Complex integrations or custom workflows may extend the timeline. We follow an agile methodology with phased go-lives so you see value quickly.",
 	},
 	{
 		id: "FAQ-5",
-		question: "Is CloudCORO accessible and ADA/Section 508 compliant?",
+		question: "Is Imola Kit accessible and ADA/Section 508 compliant?",
 		answer:
-			"Absolutely. CloudCORO meets WCAG 2.1 AA standards and is fully Section 508 compliant. Our citizen portal supports screen readers, keyboard navigation, high contrast modes, and multi-language content. We conduct regular accessibility audits and provide a VPAT (Voluntary Product Accessibility Template) upon request.",
+			"Absolutely. Imola Kit meets WCAG 2.1 AA standards and is fully Section 508 compliant. It supports screen readers, keyboard navigation, high contrast modes, and multi-language content.",
 	},
 	{
 		id: "FAQ-6",
-		question: "How does CloudCORO handle scaling for large agencies?",
+		question: "How does Imola Kit handle scaling?",
 		answer:
-			"Built on Salesforce's multi-tenant architecture, CloudCORO scales automatically to handle millions of citizen interactions. We currently support agencies processing over 500,000 cases annually. Load balancing, auto-scaling, and geographic redundancy ensure consistent performance during peak periods.",
+			"Imola Kit scales automatically to handle high volumes of interactions. Load balancing, auto-scaling, and geographic redundancy ensure consistent performance during peak periods.",
 	},
 	{
 		id: "FAQ-7",
 		question: "What training and support options are available?",
 		answer:
-			"CloudCORO includes comprehensive onboarding with role-based training for administrators, case workers, and field staff. We provide a self-service knowledge base, video tutorials, and dedicated support channels. Enterprise customers receive a named Customer Success Manager and 24/7 priority support with guaranteed SLAs.",
+			"Imola Kit includes comprehensive onboarding with role-based training. We provide a self-service knowledge base, video tutorials, and dedicated support channels.",
 	},
 ];
 
@@ -74,7 +74,7 @@ export function Faqs() {
 								Have another question?{" "}
 								<Box
 									component="a"
-									href="mailto:info@cloudcoro.com"
+									href="mailto:info@example.com"
 									sx={{ color: "inherit", textDecoration: "underline" }}
 								>
 									Email us

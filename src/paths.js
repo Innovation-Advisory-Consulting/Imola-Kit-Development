@@ -41,81 +41,6 @@ export const paths = {
 	},
 	dashboard: {
 		overview: "/dashboard",
-		myDay: "/dashboard/my-day",
-		workQueue: "/dashboard/work-queue",
-		teamMonitor: "/dashboard/team-monitor",
-		contracts: {
-			list: "/dashboard/contracts",
-			create: "/dashboard/contracts/create",
-			details: (contractId) => `/dashboard/contracts/${contractId}`,
-		},
-		taskOrders: {
-			list: "/dashboard/task-orders",
-			create: "/dashboard/task-orders/create",
-			details: (taskOrderId) => `/dashboard/task-orders/${taskOrderId}`,
-		},
-		amendments: {
-			list: "/dashboard/amendments",
-			details: (amendmentId) => `/dashboard/amendments/${amendmentId}`,
-		},
-		supplements: {
-			details: (supplementId) => `/dashboard/supplements/${supplementId}`,
-		},
-		terminations: {
-			list: "/dashboard/terminations",
-			details: (terminationId) => `/dashboard/terminations/${terminationId}`,
-		},
-		settlements: {
-			list: "/dashboard/settlements",
-			details: (settlementId) => `/dashboard/settlements/${settlementId}`,
-		},
-		cases: {
-			list: "/dashboard/cases",
-			create: "/dashboard/cases/create",
-			details: (caseId) => `/dashboard/cases/${caseId}`,
-		},
-		timesheets: {
-			list: "/dashboard/timesheets",
-			create: "/dashboard/timesheets/create",
-			details: (timesheetId) => `/dashboard/timesheets/${timesheetId}`,
-		},
-		funding: {
-			list: "/dashboard/funding",
-			details: (fundId) => `/dashboard/funding/${fundId}`,
-		},
-		reports: {
-			overview: "/dashboard/reports",
-			fundingByPeriod: "/dashboard/reports/funding-by-period",
-			contractPortfolio: "/dashboard/reports/contract-portfolio",
-			taskOrderExecution: "/dashboard/reports/task-order-execution",
-			invoiceTracking: "/dashboard/reports/invoice-tracking",
-		},
-		referenceData: {
-			businessUnits: "/dashboard/reference-data/business-units",
-			fundingCodes: "/dashboard/reference-data/funding-codes",
-			amendmentReasons: "/dashboard/reference-data/amendment-reasons",
-		},
-		validations: {
-			profiles: {
-				list: "/dashboard/validations/profiles",
-				create: "/dashboard/validations/profiles/create",
-				details: (profileId) => `/dashboard/validations/profiles/${profileId}`,
-			},
-			taskSets: {
-				list: "/dashboard/validations/task-sets",
-				create: "/dashboard/validations/task-sets/create",
-				details: (taskSetId) => `/dashboard/validations/task-sets/${taskSetId}`,
-			},
-			ruleSets: {
-				list: "/dashboard/validations/rule-sets",
-				create: "/dashboard/validations/rule-sets/create",
-				details: (ruleSetId) => `/dashboard/validations/rule-sets/${ruleSetId}`,
-			},
-			requests: {
-				list: "/dashboard/validations/requests",
-				details: (requestId) => `/dashboard/validations/requests/${requestId}`,
-			},
-		},
 		settings: {
 			account: "/dashboard/settings/account",
 			billing: "/dashboard/settings/billing",
@@ -187,7 +112,6 @@ export const paths = {
 		},
 		tasks: "/dashboard/tasks",
 	},
-	pdf: { invoice: (invoiceId) => `/pdf/invoices/${invoiceId}` },
 	components: {
 		index: "/components",
 		buttons: "/components/buttons",

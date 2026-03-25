@@ -19,7 +19,7 @@ const reviews = [
 		role: "Chief Information Officer",
 		agency: "State Department of Health & Human Services",
 		comment:
-			"CloudCORO transformed our citizen services. What used to take 6-8 weeks for permit processing now takes just 5 business days. Our constituents are thrilled with the self-service portal.",
+			"Imola Kit transformed our services. What used to take 6-8 weeks for processing now takes just 5 business days. Our users are thrilled with the self-service portal.",
 	},
 	{
 		id: "REV-2",
@@ -35,7 +35,7 @@ const reviews = [
 		role: "Program Director",
 		agency: "Federal Grants Administration Office",
 		comment:
-			"Managing $2.3B in federal grants across 200+ programs was overwhelming with our legacy system. CloudCORO's grants management module gave us complete visibility and reduced compliance findings by 78%.",
+			"Managing complex programs across 200+ workflows was overwhelming with our legacy system. Imola Kit's management module gave us complete visibility and reduced issues by 78%.",
 	},
 	{
 		id: "REV-4",
@@ -43,7 +43,7 @@ const reviews = [
 		role: "Deputy Commissioner",
 		agency: "State Department of Revenue",
 		comment:
-			"We evaluated five platforms before choosing CloudCORO. The combination of citizen-facing portal, back-office automation, and mobile tools — all on one platform — made the decision easy. Implementation was smooth and on schedule.",
+			"We evaluated five platforms before choosing Imola Kit. The combination of user-facing portal, back-office automation, and mobile tools — all on one platform — made the decision easy. Implementation was smooth and on schedule.",
 	},
 	{
 		id: "REV-5",
@@ -51,7 +51,7 @@ const reviews = [
 		role: "Director of Modernization",
 		agency: "City of Metropolitan Services",
 		comment:
-			"CloudCORO helped us consolidate 12 separate legacy systems into one unified platform. Our staff productivity increased by 40%, and citizen satisfaction scores jumped from 62% to 91% in the first year.",
+			"Imola Kit helped us consolidate 12 separate legacy systems into one unified platform. Our staff productivity increased by 40%, and satisfaction scores jumped from 62% to 91% in the first year.",
 	},
 ];
 

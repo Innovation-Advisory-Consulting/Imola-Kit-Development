@@ -1,5 +1,5 @@
 {
-	"name": "@devias-kit-pro/vite-template",
+	"name": "@imola/kit",
 	"author": "Devias IO",
 	"version": "8.1.0",
 	"private": true,
@@ -36,7 +36,6 @@
 		"@fullcalendar/timegrid": "6.1.17",
 		"@fullcalendar/timeline": "6.1.17",
 		"@hookform/resolvers": "5.1.1",
-		"@imola/gantt-chart": "file:packages/imola-gantt-chart-1.0.0.tgz",
 		"@mui/lab": "7.0.0-beta.13",
 		"@mui/material": "7.1.1",
 		"@mui/system": "7.1.1",

@@ -15,10 +15,10 @@ export function Logo({ color = "dark", emblem, height = HEIGHT, width = WIDTH })
 	if (emblem) {
 		url = "/assets/favicon.png";
 	} else {
-		url = color === "light" ? "/assets/Reinier-White.svg" : "/assets/Reinier-Black.svg";
+		url = color === "light" ? "/assets/logo-light.svg" : "/assets/logo-dark.svg";
 	}
 
-	return <Box alt="CloudCoro" component="img" src={url} sx={{ height, width: "auto", maxWidth: width }} />;
+	return <Box alt="Imola Kit" component="img" src={url} sx={{ height, width: "auto", maxWidth: width }} />;
 }
 
 export function DynamicLogo({ colorDark = "light", colorLight = "dark", height = HEIGHT, width = WIDTH, ...props }) {

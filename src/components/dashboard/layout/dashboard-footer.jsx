@@ -4,11 +4,11 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
 const links = [
-  { label: 'EULA', href: 'https://cloudcoro.com/eula' },
-  { label: 'Privacy Policy', href: 'https://cloudcoro.com/privacy' },
-  { label: 'AI Policy', href: 'https://cloudcoro.com/ai-policy' },
-  { label: 'SLA', href: 'https://cloudcoro.com/sla' },
-  { label: 'Third-Party Notice', href: 'https://cloudcoro.com/third-party-notice' },
+  { label: 'EULA', href: '#eula' },
+  { label: 'Privacy Policy', href: '#privacy' },
+  { label: 'AI Policy', href: '#ai-policy' },
+  { label: 'SLA', href: '#sla' },
+  { label: 'Third-Party Notice', href: '#third-party-notice' },
 ]
 
 export function DashboardFooter() {
@@ -28,7 +28,7 @@ export function DashboardFooter() {
         sx={{ alignItems: { sm: 'center' }, justifyContent: 'space-between' }}
       >
         <Typography variant="caption" color="text.secondary">
-          &copy; {new Date().getFullYear()} CloudCORO. All rights reserved.
+          &copy; {new Date().getFullYear()} Imola Kit. All rights reserved.
         </Typography>
         <Stack direction="row" spacing={2}>
           {links.map((link) => (

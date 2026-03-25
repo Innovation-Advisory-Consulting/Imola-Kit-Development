@@ -81,9 +81,9 @@ export function StartBuilding() {
 								Transform Your Agency Operations
 							</Typography>
 							<Typography color="neutral.300">
-								Ready to modernize how your agency serves constituents? CloudCORO provides the complete
-								platform — citizen portal, back-office system, and mobile field apps — to deliver faster,
-								more transparent government services.
+								Ready to build something great? Imola Kit provides the complete
+								platform — user portal, back-office system, and mobile apps — to deliver faster,
+								more efficient services.
 							</Typography>
 						</Stack>
 						<div>

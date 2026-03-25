@@ -11,13 +11,11 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
 
-import { useAuth } from "@/auth/AuthContext";
 import { PropertyItem } from "@/components/core/property-item";
 import { PropertyList } from "@/components/core/property-list";
 
 export function AccountDetails() {
-	const { auth } = useAuth();
-	const user = auth?.user;
+	const user = { name: "Sofia Rivers", avatar: "/assets/avatar.png", email: "sofia@devias.io", username: "sofia.rivers", id: "USR-000" };
 
 	return (
 		<Card>
@@ -28,7 +26,7 @@ export function AccountDetails() {
 					</Avatar>
 				}
 				title="Profile"
-				subheader="Your Salesforce account information"
+				subheader="Your account information"
 			/>
 			<Divider />
 			<CardContent>
@@ -47,7 +45,7 @@ export function AccountDetails() {
 									{user.username}
 								</Typography>
 							) : null}
-							<Chip label="Salesforce User" size="small" variant="outlined" color="primary" />
+							<Chip label="User" size="small" variant="outlined" color="primary" />
 						</Stack>
 					</Stack>
 					<Divider />
@@ -56,7 +54,6 @@ export function AccountDetails() {
 						<PropertyItem name="Email" value={user?.email || "—"} />
 						<PropertyItem name="Username" value={user?.username || "—"} />
 						<PropertyItem name="User ID" value={user?.id || "—"} />
-						<PropertyItem name="Instance" value={auth?.instanceUrl || "—"} />
 					</PropertyList>
 				</Stack>
 			</CardContent>

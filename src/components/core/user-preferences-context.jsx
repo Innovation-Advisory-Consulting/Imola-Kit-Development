@@ -2,19 +2,13 @@
 
 import * as React from "react";
 
-const STORAGE_KEY = "cc-user-preferences";
+const STORAGE_KEY = "ik-user-preferences";
 
 export const DASHBOARD_WIDGETS = [
-	{ id: "summaryStrip", label: "Summary Strip", description: "Key metrics: contracts, authorized amount, task orders, invoices" },
-	{ id: "budgetGauge", label: "Budget Utilization", description: "Radial gauge showing expended vs obligated vs authorized" },
-	{ id: "contractStatus", label: "Contracts by Status", description: "Donut chart of contract statuses" },
-	{ id: "amendments", label: "Amendments", description: "Amendment status breakdown with mini donuts" },
-	{ id: "invoiceCategory", label: "Invoices by Category", description: "Bar chart of invoice amounts by category" },
-	{ id: "invoicePipeline", label: "Invoice Pipeline", description: "Invoice status pipeline with progress bars" },
-	{ id: "taskOrdersByContract", label: "Task Orders by Contract", description: "Horizontal bar chart of authorized vs invoiced" },
-	{ id: "recentInvoices", label: "Recent Invoices", description: "Table of most recent invoices" },
-	{ id: "expiringContracts", label: "Expiring Contracts", description: "Active contracts nearest to expiry with utilization" },
-	{ id: "taskOrderSummary", label: "Task Orders by Status", description: "Task order burn rate by status" },
+	{ id: "summaryStrip", label: "Summary Strip", description: "Key metrics overview" },
+	{ id: "recentActivity", label: "Recent Activity", description: "Latest activity feed" },
+	{ id: "statusBreakdown", label: "Status Breakdown", description: "Chart of item statuses" },
+	{ id: "performance", label: "Performance", description: "Performance metrics and trends" },
 ];
 
 const defaultPreferences = {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 const MAX_RECENT = 3
-const STORAGE_KEY = 'rainier_recent_records'
+const STORAGE_KEY = 'ik_recent_records'
 
 function load() {
   try {

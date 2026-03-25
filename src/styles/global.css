@@ -1,4 +1,4 @@
-/* CloudCORO fonts */
+/* Fonts */
 @import "~@fontsource/open-sans/300.css";
 @import "~@fontsource/open-sans/400.css";
 @import "~@fontsource/open-sans/500.css";
@@ -116,7 +116,7 @@
 	--maxWidth-lg: 1200px;
 	--maxWidth-xl: 1440px;
 
-	/* CloudCORO Design Tokens */
+	/* Design Tokens */
 	--cc-cloud: #2669b3;
 	--cc-coro: #a9cf39;
 	--cc-neutral: #e1e4ea;

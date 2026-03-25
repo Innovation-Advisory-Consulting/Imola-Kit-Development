@@ -67,12 +67,6 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    proxy: {
-      '/services/oauth2': {
-        target: 'https://login.salesforce.com',
-        changeOrigin: true,
-      },
-    },
   },
   preview: {
     port: 3000,

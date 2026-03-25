@@ -177,8 +177,7 @@ export function Included() {
 							Deploy Anywhere, Connect Everything
 						</Typography>
 						<Typography sx={{ color: "rgba(255,255,255,0.7)", mt: 1 }} variant="body2">
-							CloudCORO integrates with existing government systems including Salesforce, SAP, Oracle, and
-							legacy mainframe applications through secure APIs and pre-built connectors.
+							Imola Kit integrates with existing systems through secure APIs and pre-built connectors.
 						</Typography>
 					</Box>
 				</Container>

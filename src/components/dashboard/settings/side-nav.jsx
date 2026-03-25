@@ -15,7 +15,6 @@ import { SlidersHorizontalIcon } from "@phosphor-icons/react/dist/ssr/SlidersHor
 import { paths } from "@/paths";
 import { isNavItemActive } from "@/lib/is-nav-item-active";
 import { usePathname } from "@/hooks/use-pathname";
-import { useAuth } from "@/auth/AuthContext";
 import { RouterLink } from "@/components/core/link";
 
 // NOTE: First level elements are groups.
@@ -57,8 +56,7 @@ const icons = {
 
 export function SideNav() {
 	const pathname = usePathname();
-	const { auth } = useAuth();
-	const user = auth?.user;
+	const user = { name: "Sofia Rivers", avatar: "/assets/avatar.png", email: "sofia@devias.io" };
 
 	return (
 		<div>

@@ -25,7 +25,7 @@ import { LayoutIcon } from "@phosphor-icons/react/dist/ssr/Layout";
 import { TextAaIcon } from "@phosphor-icons/react/dist/ssr/TextAa";
 import { TranslateIcon } from "@phosphor-icons/react/dist/ssr/Translate";
 import { SquaresFourIcon } from "@phosphor-icons/react/dist/ssr/SquaresFour";
-import { RainierAiIcon } from "@/components/core/rainier-ai-icon";
+import { AiIcon } from "@/components/core/rainier-ai-icon";
 
 import { appConfig } from "@/config/app";
 import { AnimatedPage } from "@/components/core/animations";
@@ -280,7 +280,7 @@ export function Page() {
 									</Avatar>
 								}
 								title="Translation Languages"
-								subheader="Select which languages appear in the RainierAI translation options"
+								subheader="Select which languages appear in the AI Assistant translation options"
 							/>
 							<CardContent>
 								<Card variant="outlined" sx={{ p: 0 }}>
@@ -388,16 +388,16 @@ export function Page() {
 						{/* Dashboard Widgets */}
 						<DashboardWidgetsSettings preferences={preferences} setPreference={setPreference} />
 
-						{/* RainierAI Assistant */}
+						{/* AI Assistant */}
 						<Card>
 							<CardHeader
 								avatar={
 									<Avatar>
-										<RainierAiIcon sx={{ fontSize: "var(--Icon-fontSize)" }} />
+										<AiIcon sx={{ fontSize: "var(--Icon-fontSize)" }} />
 									</Avatar>
 								}
-								title="RainierAI Assistant"
-								subheader="Customize how the RainierAI assistant behaves"
+								title="AI Assistant"
+								subheader="Customize how the AI assistant behaves"
 							/>
 							<CardContent>
 								<Stack spacing={3}>

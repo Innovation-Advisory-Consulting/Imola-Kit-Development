@@ -68,34 +68,6 @@ export const routes = [
 			return { Component: Page };
 		},
 	},
-	{
-		path: "pdf/invoices/:invoiceId",
-		lazy: async () => {
-			const { Page } = await import("@/pages/pdf/invoice");
-			return { Component: Page };
-		},
-	},
-	{
-		path: "pdf/contracts/:contractId",
-		lazy: async () => {
-			const { Page } = await import("@/pages/pdf/contract");
-			return { Component: Page };
-		},
-	},
-	{
-		path: "login",
-		lazy: async () => {
-			const { Page } = await import("@/pages/login");
-			return { Component: Page };
-		},
-	},
-	{
-		path: "callback",
-		lazy: async () => {
-			const OAuthCallback = (await import("@/auth/OAuthCallback")).default;
-			return { Component: OAuthCallback };
-		},
-	},
 	authRoute,
 	dashboardRoute,
 	{ path: "*", element: <NotFoundPage /> },

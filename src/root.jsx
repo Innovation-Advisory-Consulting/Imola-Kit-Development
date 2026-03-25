@@ -15,8 +15,7 @@ import { getSettings as getPersistedSettings } from "@/lib/settings";
 import { AuthProvider as CognitoProvider } from "@/components/auth/cognito/auth-context";
 import { AuthProvider as CustomAuthProvider } from "@/components/auth/custom/auth-context";
 import { AuthProvider as SupabaseProvider } from "@/components/auth/supabase/auth-context";
-import { AuthProvider as SalesforceProvider } from "@/auth/AuthContext";
-import { ThemeProvider } from "@/components/core//theme-provider";
+import { ThemeProvider } from "@/components/core/theme-provider";
 import { Analytics } from "@/components/core/analytics";
 import { I18nProvider } from "@/components/core/i18n-provider";
 import { LocalizationProvider } from "@/components/core/localization-provider";
@@ -32,7 +31,9 @@ const metadata = { title: appConfig.name };
 // Define the AuthProvider based on the selected auth strategy
 // Remove this block if you are not using any auth strategy
 
-let AuthProvider = SalesforceProvider;
+let AuthProvider = function AuthProvider({ children }) {
+	return children;
+};
 
 if (appConfig.authStrategy === AuthStrategy.AUTH0) {
 	AuthProvider = function AuthProvider(props) {

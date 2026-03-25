@@ -2,7 +2,7 @@ import { AuthStrategy } from "@/lib/auth-strategy";
 import { LogLevel } from "@/lib/logger";
 
 export const appConfig = {
-	name: "CloudCoro CRM",
+	name: "Imola Kit",
 	description: "",
 	direction: "ltr",
 	language: "en",

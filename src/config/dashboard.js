@@ -5,48 +5,45 @@ export const dashboardConfig = {
 	navColor: "evident",
 	navItems: [
 		{
-			key: "work",
-			title: "Work",
-			items: [
-				{ key: "my-day", title: "My Day", href: paths.dashboard.myDay, icon: "calendar-check" },
-				{ key: "work-queue", title: "Work Queue", href: paths.dashboard.workQueue, icon: "kanban" },
-				{ key: "team-monitor", title: "Team Monitor", href: paths.dashboard.teamMonitor, icon: "users" },
-			],
-		},
-		{
 			key: "dashboards",
 			title: "Dashboards",
 			items: [
 				{ key: "overview", title: "Overview", href: paths.dashboard.overview, icon: "house" },
+				{ key: "analytics", title: "Analytics", href: paths.dashboard.analytics, icon: "chart-pie" },
+				{ key: "e-commerce", title: "E-Commerce", href: paths.dashboard.eCommerce, icon: "shopping-cart-simple" },
+				{ key: "logistics", title: "Logistics", href: paths.dashboard.logistics.metrics, icon: "truck" },
+				{ key: "crypto", title: "Crypto", href: paths.dashboard.crypto, icon: "currency-btc" },
 			],
 		},
 		{
-			key: "contract-management",
-			title: "Contract Management",
+			key: "general",
+			title: "General",
 			items: [
 				{
-					key: "contracts",
-					title: "Contracts",
-					icon: "file-text",
+					key: "customers",
+					title: "Customers",
+					icon: "users",
 					items: [
-						{ key: "contracts:list", title: "All contracts", href: paths.dashboard.contracts.list },
-						{ key: "contracts:create", title: "New contract", href: paths.dashboard.contracts.create },
+						{ key: "customers:list", title: "List", href: paths.dashboard.customers.list },
+						{ key: "customers:create", title: "Create", href: paths.dashboard.customers.create },
 					],
 				},
 				{
-					key: "task-orders",
-					title: "Task Orders",
+					key: "products",
+					title: "Products",
+					icon: "package",
+					items: [
+						{ key: "products:list", title: "List", href: paths.dashboard.products.list },
+						{ key: "products:create", title: "Create", href: paths.dashboard.products.create },
+					],
+				},
+				{
+					key: "orders",
+					title: "Orders",
 					icon: "clipboard-text",
 					items: [
-						{ key: "task-orders:list", title: "All task orders", href: paths.dashboard.taskOrders.list },
-					],
-				},
-				{
-					key: "amendments",
-					title: "Amendments",
-					icon: "note-pencil",
-					items: [
-						{ key: "amendments:list", title: "All amendments", href: paths.dashboard.amendments.list },
+						{ key: "orders:list", title: "List", href: paths.dashboard.orders.list },
+						{ key: "orders:create", title: "Create", href: paths.dashboard.orders.create },
 					],
 				},
 				{
@@ -54,89 +51,32 @@ export const dashboardConfig = {
 					title: "Invoices",
 					icon: "receipt",
 					items: [
-						{ key: "invoices:list", title: "All invoices", href: paths.dashboard.invoices.list },
+						{ key: "invoices:list", title: "List", href: paths.dashboard.invoices.list },
+						{ key: "invoices:create", title: "Create", href: paths.dashboard.invoices.create },
 					],
 				},
 				{
-					key: "terminations",
-					title: "Terminations",
-					icon: "prohibit",
+					key: "blog",
+					title: "Blog",
+					icon: "newspaper-clipping",
 					items: [
-						{ key: "terminations:list", title: "All terminations", href: paths.dashboard.terminations.list },
+						{ key: "blog:list", title: "List", href: paths.dashboard.blog.list },
+						{ key: "blog:create", title: "Create", href: paths.dashboard.blog.create },
 					],
 				},
 				{
-					key: "settlements",
-					title: "Settlements",
-					icon: "scales",
+					key: "jobs",
+					title: "Jobs",
+					icon: "read-cv-logo",
 					items: [
-						{ key: "settlements:list", title: "All settlements", href: paths.dashboard.settlements.list },
+						{ key: "jobs:browse", title: "Browse", href: paths.dashboard.jobs.browse },
+						{ key: "jobs:create", title: "Create", href: paths.dashboard.jobs.create },
 					],
 				},
-				{
-					key: "vendors",
-					title: "Vendors",
-					icon: "buildings",
-					items: [
-						{ key: "vendors:list", title: "All vendors", href: paths.dashboard.customers.list },
-						{ key: "vendors:create", title: "New vendor", href: paths.dashboard.customers.create },
-					],
-				},
-				{
-					key: "funding",
-					title: "Funds",
-					href: paths.dashboard.funding.list,
-					icon: "currency-dollar",
-				},
-			],
-		},
-		{
-			key: "reports",
-			title: "Reports",
-			items: [
-				{
-					key: "reports",
-					title: "Reports",
-					icon: "chart-bar",
-					items: [
-						{ key: "reports:overview", title: "Overview", href: paths.dashboard.reports.overview },
-						{ key: "reports:funding-by-period", title: "Funding by Period", href: paths.dashboard.reports.fundingByPeriod },
-					],
-				},
-			],
-		},
-		{
-			key: "administration",
-			title: "Administration",
-			items: [
-				{
-					key: "validations",
-					title: "Validations",
-					icon: "shield-check",
-					items: [
-						{ key: "validations:profiles", title: "Profiles", href: paths.dashboard.validations.profiles.list },
-						{ key: "validations:task-sets", title: "Task Sets", href: paths.dashboard.validations.taskSets.list },
-						{ key: "validations:rule-sets", title: "Rule Sets", href: paths.dashboard.validations.ruleSets.list },
-						{ key: "validations:requests", title: "Requests", href: paths.dashboard.validations.requests.list },
-					],
-				},
-				{
-					key: "reference-data",
-					title: "Reference Data",
-					icon: "database",
-					items: [
-						{ key: "ref:business-units", title: "Business Units", href: paths.dashboard.referenceData.businessUnits },
-						{ key: "ref:funding-codes", title: "Funding Codes", href: paths.dashboard.referenceData.fundingCodes },
-						{ key: "ref:amendment-reasons", title: "Amendment Reasons", href: paths.dashboard.referenceData.amendmentReasons },
-					],
-				},
-				{
-					key: "settings",
-					title: "Settings",
-					href: paths.dashboard.settings.account,
-					icon: "gear",
-					matcher: { type: "startsWith", href: "/dashboard/settings" },
-				},
+				{ key: "academy", title: "Academy", href: paths.dashboard.academy.browse, icon: "graduation-cap" },
+				{ key: "tasks", title: "Tasks", href: paths.dashboard.tasks, icon: "kanban" },
+				{ key: "calendar", title: "Calendar", href: paths.dashboard.calendar, icon: "calendar-check" },
+				{ key: "file-storage", title: "File Storage", href: paths.dashboard.fileStorage, icon: "upload-simple" },
 			],
 		},
 		{
@@ -145,10 +85,30 @@ export const dashboardConfig = {
 			items: [
 				{
 					key: "chat",
-					title: "RainierAI Chat",
+					title: "Chat",
 					href: paths.dashboard.chat.base,
 					icon: "chats-circle",
 					matcher: { type: "startsWith", href: "/dashboard/chat" },
+				},
+				{
+					key: "mail",
+					title: "Mail",
+					href: paths.dashboard.mail.list("inbox"),
+					icon: "envelope-simple",
+					matcher: { type: "startsWith", href: "/dashboard/mail" },
+				},
+			],
+		},
+		{
+			key: "settings",
+			title: "Settings",
+			items: [
+				{
+					key: "settings",
+					title: "Settings",
+					href: paths.dashboard.settings.account,
+					icon: "gear",
+					matcher: { type: "startsWith", href: "/dashboard/settings" },
 				},
 			],
 		},

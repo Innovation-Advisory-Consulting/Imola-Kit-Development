@@ -46,12 +46,12 @@ export function Footer() {
 					<Grid size={{ xs: 12, md: 3 }}>
 						<Box
 							component="img"
-							src="/assets/CloudCoro_compact.png"
-							alt="CloudCORO"
+							src="/assets/logo-dark.svg"
+							alt="Imola Kit"
 							sx={{ height: { xs: 32, md: 40 }, width: "auto", mb: 1.5 }}
 						/>
 						<Typography variant="body2" sx={{ color: "#9ca3af", fontSize: { xs: "0.75rem", md: "0.875rem" } }}>
-							The #1 Partner for Government-to-Constituent Interaction
+							A modern application toolkit
 						</Typography>
 					</Grid>
 
@@ -161,7 +161,7 @@ export function Footer() {
 						variant="body2"
 						sx={{ color: "#9ca3af", fontSize: { xs: "0.75rem", md: "0.875rem" }, textAlign: { xs: "center", md: "left" } }}
 					>
-						&copy; 2026 CloudCORO. All rights reserved. | Modernization that feels natural.
+						&copy; 2026 Imola Kit. All rights reserved.
 					</Typography>
 					<Stack
 						direction="row"

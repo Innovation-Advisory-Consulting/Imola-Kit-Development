@@ -7,8 +7,8 @@ import { ChatView } from "@/components/dashboard/chat/chat-view";
 const contacts = [
 	{
 		id: "USR-AI",
-		name: "RainierAI",
-		avatar: "/assets/avatar-rainier-ai.svg",
+		name: "AI Assistant",
+		avatar: "/assets/avatar-ai.svg",
 		isActive: true,
 		lastActivity: dayjs().toDate(),
 	},
@@ -79,7 +79,7 @@ const threads = [
 		type: "direct",
 		participants: [
 			{ id: "USR-000", name: "Sofia Rivers", avatar: "/assets/avatar.png" },
-			{ id: "USR-AI", name: "RainierAI", avatar: "/assets/avatar-rainier-ai.svg" },
+			{ id: "USR-AI", name: "AI Assistant", avatar: "/assets/avatar-ai.svg" },
 		],
 		unreadCount: 1,
 	},
@@ -127,8 +127,8 @@ const messages = [
 		id: "MSG-AI-001",
 		threadId: "TRD-AI",
 		type: "text",
-		content: "Hi! I'm RainierAI, your CloudCoro assistant. I can help you with contracts, task orders, invoices, and more. Ask me anything about your CRM data or how to use the system.",
-		author: { id: "USR-AI", name: "RainierAI", avatar: "/assets/avatar-rainier-ai.svg" },
+		content: "Hi! I'm your AI Assistant. I can help you with questions and tasks. Ask me anything!",
+		author: { id: "USR-AI", name: "AI Assistant", avatar: "/assets/avatar-ai.svg" },
 		createdAt: dayjs().subtract(1, "minute").toDate(),
 	},
 	{

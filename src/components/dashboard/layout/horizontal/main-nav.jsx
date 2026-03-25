@@ -19,7 +19,6 @@ import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/ssr/MagnifyingGl
 import { UsersIcon } from "@phosphor-icons/react/dist/ssr/Users";
 import { paths } from "@/paths";
 import { isNavItemActive } from "@/lib/is-nav-item-active";
-import { useAuth } from "@/auth/AuthContext";
 import { useDialog } from "@/hooks/use-dialog";
 import { usePathname } from "@/hooks/use-pathname";
 import { usePopover } from "@/hooks/use-popover";
@@ -161,8 +160,7 @@ function ContactsButton() {
 
 function UserButton() {
 	const popover = usePopover();
-	const { auth } = useAuth();
-	const user = auth?.user;
+	const user = { name: "Sofia Rivers", avatar: "/assets/avatar.png" };
 
 	return (
 		<React.Fragment>

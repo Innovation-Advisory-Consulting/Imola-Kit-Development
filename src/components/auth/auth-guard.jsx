@@ -10,8 +10,6 @@ import { AuthGuard as ClerkAuthGuard } from "./clerk/auth-guard";
 import { AuthGuard as CognitoAuthGuard } from "./cognito/auth-guard";
 import { AuthGuard as CustomAuthGuard } from "./custom/auth-guard";
 import { AuthGuard as SupabaseAuthGuard } from "./supabase/auth-guard";
-import { AuthGuard as SalesforceAuthGuard } from "./salesforce/auth-guard";
-
 export function AuthGuard(props) {
 	if (appConfig.authStrategy === AuthStrategy.AUTH0) {
 		return <Auth0AuthGuard {...props} />;
@@ -33,5 +31,5 @@ export function AuthGuard(props) {
 		return <SupabaseAuthGuard {...props} />;
 	}
 
-	return <SalesforceAuthGuard {...props} />;
+	return <React.Fragment>{props.children}</React.Fragment>;
 }

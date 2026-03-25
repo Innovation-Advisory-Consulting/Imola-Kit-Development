@@ -79,15 +79,14 @@ export function Hero() {
 					</Box>
 					<Stack spacing={2}>
 						<Typography sx={{ fontSize: "3.5rem", fontWeight: 600, lineHeight: 1.2, textAlign: "center" }}>
-							Modernize government services with{" "}
+							Build modern apps with{" "}
 							<Typography color="primary.main" component="span" variant="inherit">
-								CloudCORO
+								Imola Kit
 							</Typography>
 						</Typography>
 						<Typography color="neutral.300" sx={{ fontWeight: 400, textAlign: "center" }} variant="h5">
-							Complete government solutions platform featuring citizen self-service portals, back-office case
-							management, and mobile applications for field staff. Built with CloudCORO Software for federal, state,
-							and local agencies.
+							A complete application toolkit featuring self-service portals, back-office management,
+							and mobile applications. Built with Imola Kit for modern teams.
 						</Typography>
 					</Stack>
 					<Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>

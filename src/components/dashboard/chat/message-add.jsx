@@ -13,7 +13,6 @@ import { CameraIcon } from "@phosphor-icons/react/dist/ssr/Camera";
 import { PaperclipIcon } from "@phosphor-icons/react/dist/ssr/Paperclip";
 import { PaperPlaneTiltIcon } from "@phosphor-icons/react/dist/ssr/PaperPlaneTilt";
 
-import { useAuth } from "@/auth/AuthContext";
 import { useRecentRecords } from "@/contexts/recent-records-context";
 
 const labelColors = {
@@ -29,8 +28,7 @@ export function MessageAdd({ disabled = false, onSend }) {
 	const [attachedRecords, setAttachedRecords] = React.useState([]);
 	const fileInputRef = React.useRef(null);
 	const { records: recentRecords } = useRecentRecords();
-	const { auth } = useAuth();
-	const currentUser = auth?.user;
+	const currentUser = { name: "Sofia Rivers", avatar: "/assets/avatar.png" };
 
 	const handleAttach = React.useCallback(() => {
 		fileInputRef.current?.click();

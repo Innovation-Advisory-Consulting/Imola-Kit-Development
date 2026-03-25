@@ -8,22 +8,22 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import MenuItem from "@mui/material/MenuItem";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-import { CreditCardIcon } from "@phosphor-icons/react/dist/ssr/CreditCard";
-import { LockKeyIcon } from "@phosphor-icons/react/dist/ssr/LockKey";
 import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
 
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 
 import { paths } from "@/paths";
-import { useAuth } from "@/auth/AuthContext";
 import { RouterLink } from "@/components/core/link";
 
-import { SalesforceSignOut } from "./salesforce-sign-out";
+const demoUser = {
+	name: "Sofia Rivers",
+	email: "sofia@devias.io",
+	avatar: "/assets/avatar.png",
+};
 
 export function UserPopover({ anchorEl, onClose, open }) {
-	const { auth } = useAuth();
-	const user = auth?.user;
+	const user = demoUser;
 
 	return (
 		<Popover
@@ -40,7 +40,7 @@ export function UserPopover({ anchorEl, onClose, open }) {
 					<Box>
 						<Typography variant="subtitle2">{user?.name || "User"}</Typography>
 						<Typography color="text.secondary" variant="body2">
-							{user?.email || user?.username || ""}
+							{user?.email || ""}
 						</Typography>
 					</Box>
 				</Stack>
@@ -54,10 +54,6 @@ export function UserPopover({ anchorEl, onClose, open }) {
 					Account
 				</MenuItem>
 			</List>
-			<Divider />
-			<Box sx={{ p: 1 }}>
-				<SalesforceSignOut />
-			</Box>
 		</Popover>
 	);
 }
