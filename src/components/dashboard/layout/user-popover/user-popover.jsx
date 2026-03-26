@@ -12,18 +12,22 @@ import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
 
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import { useMsal } from "@azure/msal-react";
 
 import { paths } from "@/paths";
 import { RouterLink } from "@/components/core/link";
-
-const demoUser = {
-	name: "Sofia Rivers",
-	email: "sofia@devias.io",
-	avatar: "/assets/avatar.png",
-};
+import { AzureAdSignOut } from "./azure-ad-sign-out";
 
 export function UserPopover({ anchorEl, onClose, open }) {
-	const user = demoUser;
+	const { instance } = useMsal();
+	const activeAccount = instance.getActiveAccount();
+
+	const user = activeAccount
+		? {
+				name: activeAccount.name,
+				email: activeAccount.username,
+			}
+		: { name: "User", email: "" };
 
 	return (
 		<Popover
@@ -36,11 +40,11 @@ export function UserPopover({ anchorEl, onClose, open }) {
 		>
 			<Box sx={{ p: 2 }}>
 				<Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
-					<Avatar src={user?.avatar} sx={{ width: 40, height: 40 }}>{user?.name?.[0]}</Avatar>
+					<Avatar sx={{ width: 40, height: 40 }}>{user.name?.[0]}</Avatar>
 					<Box>
-						<Typography variant="subtitle2">{user?.name || "User"}</Typography>
+						<Typography variant="subtitle2">{user.name}</Typography>
 						<Typography color="text.secondary" variant="body2">
-							{user?.email || ""}
+							{user.email}
 						</Typography>
 					</Box>
 				</Stack>
@@ -54,6 +58,8 @@ export function UserPopover({ anchorEl, onClose, open }) {
 					Account
 				</MenuItem>
 			</List>
+			<Divider />
+			<AzureAdSignOut />
 		</Popover>
 	);
 }

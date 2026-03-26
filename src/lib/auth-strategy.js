@@ -1,6 +1,7 @@
 export const AuthStrategy = {
 	NONE: "NONE",
 	AUTH0: "AUTH0",
+	AZURE_AD: "AZURE_AD",
 	CLERK: "CLERK",
 	COGNITO: "COGNITO",
 	CUSTOM: "CUSTOM",

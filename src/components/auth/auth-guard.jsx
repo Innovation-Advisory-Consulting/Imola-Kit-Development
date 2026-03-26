@@ -6,6 +6,7 @@ import { appConfig } from "@/config/app";
 import { AuthStrategy } from "@/lib/auth-strategy";
 
 import { AuthGuard as Auth0AuthGuard } from "./auth0/auth-guard";
+import { AuthGuard as AzureAdAuthGuard } from "./azure-ad/auth-guard";
 import { AuthGuard as ClerkAuthGuard } from "./clerk/auth-guard";
 import { AuthGuard as CognitoAuthGuard } from "./cognito/auth-guard";
 import { AuthGuard as CustomAuthGuard } from "./custom/auth-guard";
@@ -13,6 +14,10 @@ import { AuthGuard as SupabaseAuthGuard } from "./supabase/auth-guard";
 export function AuthGuard(props) {
 	if (appConfig.authStrategy === AuthStrategy.AUTH0) {
 		return <Auth0AuthGuard {...props} />;
+	}
+
+	if (appConfig.authStrategy === AuthStrategy.AZURE_AD) {
+		return <AzureAdAuthGuard {...props} />;
 	}
 
 	if (appConfig.authStrategy === AuthStrategy.CLERK) {

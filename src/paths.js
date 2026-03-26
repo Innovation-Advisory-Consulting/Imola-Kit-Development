@@ -16,6 +16,9 @@ export const paths = {
 			signOut: "/auth/auth0/sign-out",
 			profile: "/auth/auth0/profile",
 		},
+		azureAd: {
+			callback: "/auth/azure-ad/callback",
+		},
 		cognito: {
 			callback: "/auth/cognito/callback",
 		},

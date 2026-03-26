@@ -12,6 +12,7 @@ import { AuthStrategy } from "@/lib/auth-strategy";
 import { providerProps as auth0ProviderProps } from "@/lib/auth0/config";
 import { providerProps as clerkProviderProps } from "@/lib/clerk/config";
 import { getSettings as getPersistedSettings } from "@/lib/settings";
+import { AuthProvider as AzureAdProvider } from "@/components/auth/azure-ad/auth-context";
 import { AuthProvider as CognitoProvider } from "@/components/auth/cognito/auth-context";
 import { AuthProvider as CustomAuthProvider } from "@/components/auth/custom/auth-context";
 import { AuthProvider as SupabaseProvider } from "@/components/auth/supabase/auth-context";
@@ -45,6 +46,10 @@ if (appConfig.authStrategy === AuthStrategy.CLERK) {
 	AuthProvider = function AuthProvider(props) {
 		return <ClerkProvider {...clerkProviderProps} {...props} />;
 	};
+}
+
+if (appConfig.authStrategy === AuthStrategy.AZURE_AD) {
+	AuthProvider = AzureAdProvider;
 }
 
 if (appConfig.authStrategy === AuthStrategy.COGNITO) {
