@@ -4,6 +4,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import Chip from '@mui/material/Chip'
+import CircularProgress from '@mui/material/CircularProgress'
 import Link from '@mui/material/Link'
 import Stack from '@mui/material/Stack'
 import Table from '@mui/material/Table'
@@ -19,105 +20,132 @@ import { appConfig } from '@/config/app'
 import { paths } from '@/paths'
 import { RouterLink } from '@/components/core/link'
 import { AnimatedPage } from '@/components/core/animations'
+import { queryAccounts } from '@/lib/dataverse/client'
 
-const metadata = { title: `Vendors | Dashboard | ${appConfig.name}` }
+const metadata = { title: `Customers | Dashboard | ${appConfig.name}` }
+
+const INDUSTRY_LABELS = {
+  1: 'Accounting', 2: 'Agriculture', 3: 'Broadcasting', 4: 'Brokers',
+  5: 'Building Supply Retail', 6: 'Business Services', 7: 'Consulting',
+  8: 'Consumer Services', 9: 'Design', 10: 'Distributors', 11: "Doctor's Offices",
+  12: 'Durable Manufacturing', 13: 'Eating & Drinking', 14: 'Entertainment Retail',
+  15: 'Equipment Rental', 16: 'Financial', 17: 'Food & Tobacco', 18: 'Inbound Capital',
+  19: 'Inbound Repair', 20: 'Insurance', 21: 'Legal Services', 22: 'Non-Durable Retail',
+  23: 'Outbound Services', 24: 'Petrochemical', 25: 'Service Retail', 26: 'SIG',
+  27: 'Social Services', 28: 'Trade Contractors', 29: 'Specialty Realty',
+  30: 'Transportation', 31: 'Utility', 32: 'Vehicle Retail', 33: 'Wholesale',
+}
+
+const TYPE_LABELS = {
+  1: 'Competitor', 2: 'Consultant', 3: 'Customer', 4: 'Investor', 5: 'Partner',
+  6: 'Influencer', 7: 'Press', 8: 'Prospect', 9: 'Reseller', 10: 'Supplier',
+  11: 'Vendor', 12: 'Other',
+}
 
 function getInitials(name) {
   if (!name) return '?'
   return name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()
 }
 
-const demoAccounts = [
-  { Id: '1', Name: 'Acme Corp', Industry: 'Consulting', Type: 'Vendor', Phone: '(555) 123-4567', BillingCity: 'San Francisco', BillingState: 'CA' },
-  { Id: '2', Name: 'Globex Inc', Industry: 'Electronics', Type: 'Vendor', Phone: '(555) 987-6543', BillingCity: 'Austin', BillingState: 'TX' },
-  { Id: '3', Name: 'Initech LLC', Industry: 'Construction', Type: 'Subcontractor', Phone: '(555) 456-7890', BillingCity: 'Denver', BillingState: 'CO' },
-  { Id: '4', Name: 'Umbrella Corp', Industry: 'Biotechnology', Type: 'Vendor', Phone: '(555) 321-0987', BillingCity: 'Chicago', BillingState: 'IL' },
-]
-
-const industryColors = {
-  Consulting: 'secondary',
-  Construction: 'warning',
-  Electronics: 'primary',
-  Biotechnology: 'success',
-}
-
 export function Page() {
+  const [accounts, setAccounts] = React.useState([])
+  const [loading, setLoading] = React.useState(true)
+  const [error, setError] = React.useState(null)
+
+  React.useEffect(() => {
+    queryAccounts({
+      select: ['accountid', 'name', 'telephone1', 'address1_city', 'address1_country', 'industrycode', 'customertypecode', 'statecode'],
+      orderby: 'name asc',
+    })
+      .then(setAccounts)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [])
+
   return (
     <React.Fragment>
       <Helmet>
         <title>{metadata.title}</title>
       </Helmet>
       <AnimatedPage>
-        <Box
-          sx={{
-            maxWidth: 'var(--Content-maxWidth)',
-            m: 'var(--Content-margin)',
-            p: 'var(--Content-padding)',
-            width: 'var(--Content-width)',
-          }}
-        >
+        <Box sx={{ maxWidth: 'var(--Content-maxWidth)', m: 'var(--Content-margin)', p: 'var(--Content-padding)', width: 'var(--Content-width)' }}>
           <Stack spacing={4}>
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ alignItems: 'flex-start' }}>
               <Box sx={{ flex: '1 1 auto' }}>
-                <Typography variant="h4">Vendors</Typography>
+                <Typography variant="h4">Customers</Typography>
               </Box>
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button
-                  component={RouterLink}
-                  href={paths.dashboard.customers.create}
-                  startIcon={<PlusIcon />}
-                  variant="contained"
-                >
-                  New Vendor
+                <Button component={RouterLink} href={paths.dashboard.customers.create} startIcon={<PlusIcon />} variant="contained">
+                  New Customer
                 </Button>
               </Box>
             </Stack>
 
             <Card>
-              <Box sx={{ overflowX: 'auto' }}>
-                <Table sx={{ minWidth: 700 }}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Company</TableCell>
-                      <TableCell>Industry</TableCell>
-                      <TableCell>Type</TableCell>
-                      <TableCell>Phone</TableCell>
-                      <TableCell>Location</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {demoAccounts.map((row) => (
-                      <TableRow hover key={row.Id}>
-                        <TableCell>
-                          <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-                            <Avatar
-                              sx={{
-                                bgcolor: 'var(--mui-palette-primary-50)',
-                                color: 'var(--mui-palette-primary-main)',
-                                fontSize: '0.875rem',
-                                fontWeight: 600,
-                              }}
-                            >
-                              {getInitials(row.Name)}
-                            </Avatar>
-                            <Link color="text.primary" component={RouterLink} href={paths.dashboard.customers.details(row.Id)} variant="subtitle2">
-                              {row.Name}
-                            </Link>
-                          </Stack>
-                        </TableCell>
-                        <TableCell>
-                          {row.Industry ? (
-                            <Chip color={industryColors[row.Industry] || 'default'} label={row.Industry} size="small" variant="soft" />
-                          ) : '\u2014'}
-                        </TableCell>
-                        <TableCell>{row.Type || '\u2014'}</TableCell>
-                        <TableCell>{row.Phone || '\u2014'}</TableCell>
-                        <TableCell>{[row.BillingCity, row.BillingState].filter(Boolean).join(', ') || '\u2014'}</TableCell>
+              {loading ? (
+                <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+                  <CircularProgress />
+                </Box>
+              ) : error ? (
+                <Box sx={{ p: 3 }}>
+                  <Typography color="error" variant="body2">{error}</Typography>
+                </Box>
+              ) : (
+                <Box sx={{ overflowX: 'auto' }}>
+                  <Table sx={{ minWidth: 700 }}>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Company</TableCell>
+                        <TableCell>Industry</TableCell>
+                        <TableCell>Type</TableCell>
+                        <TableCell>Phone</TableCell>
+                        <TableCell>Location</TableCell>
+                        <TableCell>Status</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Box>
+                    </TableHead>
+                    <TableBody>
+                      {accounts.length === 0 ? (
+                        <TableRow>
+                          <TableCell colSpan={6} sx={{ textAlign: 'center', color: 'text.secondary', py: 4 }}>
+                            No customers found
+                          </TableCell>
+                        </TableRow>
+                      ) : (
+                        accounts.map((row) => (
+                          <TableRow hover key={row.accountid}>
+                            <TableCell>
+                              <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+                                <Avatar sx={{ bgcolor: 'var(--mui-palette-primary-50)', color: 'var(--mui-palette-primary-main)', fontSize: '0.875rem', fontWeight: 600 }}>
+                                  {getInitials(row.name)}
+                                </Avatar>
+                                <Link color="text.primary" component={RouterLink} href={paths.dashboard.customers.details(row.accountid)} variant="subtitle2">
+                                  {row.name}
+                                </Link>
+                              </Stack>
+                            </TableCell>
+                            <TableCell>
+                              {row.industrycode != null ? (
+                                <Chip label={INDUSTRY_LABELS[row.industrycode] ?? row.industrycode} size="small" variant="soft" />
+                              ) : '—'}
+                            </TableCell>
+                            <TableCell>{TYPE_LABELS[row.customertypecode] ?? '—'}</TableCell>
+                            <TableCell>{row.telephone1 || '—'}</TableCell>
+                            <TableCell>{[row.address1_city, row.address1_country].filter(Boolean).join(', ') || '—'}</TableCell>
+                            <TableCell>
+                              <Chip
+                                color={row.statecode === 0 ? 'success' : 'default'}
+                                label={row.statecode === 0 ? 'Active' : 'Inactive'}
+                                size="small"
+                                variant="soft"
+                              />
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      )}
+                    </TableBody>
+                  </Table>
+                </Box>
+              )}
             </Card>
           </Stack>
         </Box>
