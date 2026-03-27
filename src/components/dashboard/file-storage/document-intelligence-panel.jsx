@@ -59,8 +59,8 @@ export function DocumentIntelligencePanel() {
     setResult(null);
 
     try {
-      const apiVersion = "2024-11-30";
-      const analyzeUrl = `${ENDPOINT}/documentintelligence/documentModels/${model}:analyze?api-version=${apiVersion}`;
+      const apiVersion = "2023-07-31";
+      const analyzeUrl = `${ENDPOINT}/formrecognizer/documentModels/${model}:analyze?api-version=${apiVersion}`;
 
       // Submit document
       const submitRes = await fetch(analyzeUrl, {
