@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "dataverse-mcp": {
+      "type": "http",
+      "url": "https://dataverse-mcp-dataverse-mcp-onesec.apps.operations.imola-solutions.com/mcp"
+    }
+  }
+}
