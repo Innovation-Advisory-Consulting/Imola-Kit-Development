@@ -79,3 +79,166 @@ export async function createAccount(fields) {
   // 204 No Content — returns the new record URI in the OData-EntityId header
   return res.headers.get('OData-EntityId') || res.headers.get('Location');
 }
+
+// ── Email Functions ──
+
+export async function whoAmI() {
+  const token = await getAccessToken();
+  const res = await fetch(`${DATAVERSE_URL}/api/data/v9.2/WhoAmI`, {
+    headers: buildHeaders(token),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `Dataverse error: ${res.status}`);
+  }
+  return res.json();
+}
+
+async function findOrCreateContact(email, name) {
+  const token = await getAccessToken();
+
+  // Search for existing contact by email
+  const searchRes = await fetch(
+    `${DATAVERSE_URL}/api/data/v9.2/contacts?$filter=emailaddress1 eq '${email}'&$select=contactid,fullname,emailaddress1&$top=1`,
+    { headers: buildHeaders(token) }
+  );
+  if (searchRes.ok) {
+    const data = await searchRes.json();
+    if (data.value?.length > 0) {
+      return data.value[0].contactid;
+    }
+  }
+
+  // Create new contact
+  const nameParts = (name || email.split('@')[0]).split(' ');
+  const createRes = await fetch(`${DATAVERSE_URL}/api/data/v9.2/contacts`, {
+    method: 'POST',
+    headers: buildHeaders(token),
+    body: JSON.stringify({
+      firstname: nameParts[0] || '',
+      lastname: nameParts.slice(1).join(' ') || nameParts[0] || 'Contact',
+      emailaddress1: email,
+    }),
+  });
+  if (!createRes.ok) {
+    const err = await createRes.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `Failed to create contact: ${createRes.status}`);
+  }
+  const entityUri = createRes.headers.get('OData-EntityId') || '';
+  const match = entityUri.match(/\(([^)]+)\)/);
+  return match ? match[1] : null;
+}
+
+export async function sendEmail({ to, subject, body }) {
+  const token = await getAccessToken();
+
+  // Get current user's systemuser ID
+  const whoAmIData = await whoAmI();
+  const systemUserId = whoAmIData.UserId;
+
+  // Resolve each recipient to a contact
+  const toParties = [];
+  for (const recipient of to) {
+    const contactId = await findOrCreateContact(recipient.email, recipient.name);
+    toParties.push({
+      'partyid_contact@odata.bind': `/contacts(${contactId})`,
+      participationtypemask: 2, // To
+    });
+  }
+
+  // Create the email activity
+  const emailRecord = {
+    subject,
+    description: body,
+    directioncode: true, // Outgoing
+    'email_activity_parties': [
+      {
+        'partyid_systemuser@odata.bind': `/systemusers(${systemUserId})`,
+        participationtypemask: 1, // From
+      },
+      ...toParties,
+    ],
+  };
+
+  const createRes = await fetch(`${DATAVERSE_URL}/api/data/v9.2/emails`, {
+    method: 'POST',
+    headers: buildHeaders(token),
+    body: JSON.stringify(emailRecord),
+  });
+
+  if (!createRes.ok) {
+    const err = await createRes.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `Failed to create email: ${createRes.status}`);
+  }
+
+  // Extract the email activity ID
+  const entityUri = createRes.headers.get('OData-EntityId') || '';
+  const match = entityUri.match(/\(([^)]+)\)/);
+  const activityId = match ? match[1] : null;
+
+  if (!activityId) {
+    throw new Error('Email created but could not extract activity ID');
+  }
+
+  // Send the email using the SendEmail action
+  try {
+    const sendRes = await fetch(`${DATAVERSE_URL}/api/data/v9.2/emails(${activityId})/Microsoft.Dynamics.CRM.SendEmail`, {
+      method: 'POST',
+      headers: buildHeaders(token),
+      body: JSON.stringify({
+        IssueSend: true,
+      }),
+    });
+
+    if (!sendRes.ok) {
+      // If SendEmail fails, set status to Pending Send for Server-Side Sync
+      await fetch(`${DATAVERSE_URL}/api/data/v9.2/emails(${activityId})`, {
+        method: 'PATCH',
+        headers: buildHeaders(token),
+        body: JSON.stringify({ statuscode: 6 }), // Pending Send
+      });
+    }
+  } catch {
+    // Fallback: set to Pending Send for Server-Side Sync delivery
+    await fetch(`${DATAVERSE_URL}/api/data/v9.2/emails(${activityId})`, {
+      method: 'PATCH',
+      headers: buildHeaders(token),
+      body: JSON.stringify({ statuscode: 6 }),
+    });
+  }
+
+  return activityId;
+}
+
+export async function fetchEmails({ folder = 'inbox', top = 50 } = {}) {
+  const token = await getAccessToken();
+  const whoAmIData = await whoAmI();
+  const systemUserId = whoAmIData.UserId;
+
+  let filter;
+  if (folder === 'sent') {
+    filter = `directioncode eq true and _ownerid_value eq '${systemUserId}'`;
+  } else {
+    // Inbox: incoming emails owned by the current user
+    filter = `directioncode eq false and _ownerid_value eq '${systemUserId}'`;
+  }
+
+  const params = new URLSearchParams();
+  params.set('$select', 'activityid,subject,description,directioncode,statuscode,createdon,modifiedon');
+  params.set('$expand', 'email_activity_parties($select=participationtypemask,_partyid_value,addressused)');
+  params.set('$filter', filter);
+  params.set('$orderby', 'createdon desc');
+  params.set('$top', String(top));
+
+  const res = await fetch(`${DATAVERSE_URL}/api/data/v9.2/emails?${params}`, {
+    headers: buildHeaders(token),
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `Dataverse error: ${res.status}`);
+  }
+
+  const data = await res.json();
+  return data.value;
+}
