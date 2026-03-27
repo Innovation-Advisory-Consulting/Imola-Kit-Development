@@ -36,16 +36,19 @@ export function DocumentIntelligencePanel() {
   const [error, setError] = React.useState(null);
   const inputRef = React.useRef(null);
 
-  const handleFile = (e) => {
-    const f = e.target.files?.[0];
-    if (f) { setFile(f); setResult(null); setError(null); }
+  const MAX_SIZE = 50 * 1024 * 1024; // 50 MB — Azure Document Intelligence limit
+
+  const validateAndSet = (f) => {
+    if (!f) return;
+    if (f.size > MAX_SIZE) {
+      setError(`File too large: ${(f.size / 1024 / 1024).toFixed(1)} MB. Maximum allowed is 50 MB.`);
+      return;
+    }
+    setFile(f); setResult(null); setError(null);
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const f = e.dataTransfer.files?.[0];
-    if (f) { setFile(f); setResult(null); setError(null); }
-  };
+  const handleFile = (e) => validateAndSet(e.target.files?.[0]);
+  const handleDrop = (e) => { e.preventDefault(); validateAndSet(e.dataTransfer.files?.[0]); };
 
   const handleExtract = async () => {
     if (!file) return;
