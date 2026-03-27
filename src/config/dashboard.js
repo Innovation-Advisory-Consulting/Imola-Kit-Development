@@ -76,7 +76,7 @@ export const dashboardConfig = {
 				{ key: "academy", title: "Academy", href: paths.dashboard.academy.browse, icon: "graduation-cap" },
 				{ key: "tasks", title: "Tasks", href: paths.dashboard.tasks, icon: "kanban" },
 				{ key: "calendar", title: "Calendar", href: paths.dashboard.calendar, icon: "calendar-check" },
-				{ key: "file-storage", title: "File Storage", href: paths.dashboard.fileStorage, icon: "upload-simple" },
+				{ key: "file-storage", title: "Document Studio", href: paths.dashboard.fileStorage, icon: "upload-simple" },
 			],
 		},
 		{

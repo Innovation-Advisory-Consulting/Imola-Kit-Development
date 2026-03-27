@@ -15,7 +15,7 @@ const groups = [
 			{ key: "customers", title: "Customers", href: paths.dashboard.customers.list },
 			{ key: "logistics", title: "Logistics", href: paths.dashboard.logistics.metrics },
 			{ key: "settings", title: "Settings", href: paths.dashboard.settings.account },
-			{ key: "file-storage", title: "File storage", href: paths.dashboard.fileStorage },
+			{ key: "file-storage", title: "Document Studio", href: paths.dashboard.fileStorage },
 		],
 	},
 	{
