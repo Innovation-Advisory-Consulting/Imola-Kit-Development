@@ -13,6 +13,9 @@ import { CameraIcon } from "@phosphor-icons/react/dist/ssr/Camera";
 import { PaperclipIcon } from "@phosphor-icons/react/dist/ssr/Paperclip";
 import { PaperPlaneTiltIcon } from "@phosphor-icons/react/dist/ssr/PaperPlaneTilt";
 
+import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
+
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { useRecentRecords } from "@/contexts/recent-records-context";
 
 const labelColors = {
@@ -28,7 +31,7 @@ export function MessageAdd({ disabled = false, onSend }) {
 	const [attachedRecords, setAttachedRecords] = React.useState([]);
 	const fileInputRef = React.useRef(null);
 	const { records: recentRecords } = useRecentRecords();
-	const currentUser = { name: "Sofia Rivers", avatar: "/assets/avatar.png" };
+	const currentUser = useCurrentUser();
 
 	const handleAttach = React.useCallback(() => {
 		fileInputRef.current?.click();
@@ -117,7 +120,7 @@ export function MessageAdd({ disabled = false, onSend }) {
 			)}
 
 			<Stack direction="row" spacing={2} sx={{ alignItems: "center", flex: "0 0 auto", px: 3, py: 1 }}>
-				<Avatar src={currentUser?.avatar} sx={{ display: { xs: "none", sm: "inline" } }}>{currentUser?.name?.[0]}</Avatar>
+				<Avatar sx={{ display: { xs: "none", sm: "inline" } }}><UserIcon /></Avatar>
 				<OutlinedInput
 					disabled={disabled}
 					onChange={handleChange}

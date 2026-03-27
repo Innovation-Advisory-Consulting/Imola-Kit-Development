@@ -58,8 +58,7 @@ export function ChatProvider({
 	const currentUser = React.useMemo(
 		() => ({
 			id: "USR-000",
-			name: "Sofia Rivers",
-			avatar: "/assets/avatar.png",
+			name: "User",
 		}),
 		[]
 	);

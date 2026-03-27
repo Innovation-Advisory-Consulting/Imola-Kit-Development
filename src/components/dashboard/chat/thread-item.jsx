@@ -9,9 +9,7 @@ import { dayjs } from "@/lib/dayjs";
 
 const user = {
 	id: "USR-000",
-	name: "Sofia Rivers",
-	avatar: "/assets/avatar.png",
-	email: "sofia@devias.io",
+	name: "User",
 };
 
 function getDisplayContent(lastMessage, userId) {

@@ -21,9 +21,7 @@ import { usePopover } from "@/hooks/use-popover";
 
 const user = {
 	id: "USR-000",
-	name: "Sofia Rivers",
-	avatar: "/assets/avatar.png",
-	email: "sofia@devias.io",
+	name: "User",
 };
 
 export function ThreadToolbar({ thread }) {

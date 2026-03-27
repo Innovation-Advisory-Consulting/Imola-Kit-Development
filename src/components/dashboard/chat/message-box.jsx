@@ -6,12 +6,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
 
 import { dayjs } from "@/lib/dayjs";
 import { AiMarkdown } from "@/components/core/ai-markdown";
 
 export function MessageBox({ message }) {
 	const currentUserId = "USR-000";
+	const isCurrentUser = message.author.id === currentUserId;
 	const position = currentUserId && message.author.id === currentUserId ? "right" : "left";
 
 	return (
@@ -26,7 +28,9 @@ export function MessageBox({ message }) {
 					mr: position === "left" ? "auto" : 0,
 				}}
 			>
-				<Avatar src={message.author.avatar} sx={{ "--Avatar-size": "32px" }} />
+				<Avatar src={isCurrentUser ? undefined : message.author.avatar} sx={{ "--Avatar-size": "32px" }}>
+					{isCurrentUser ? <UserIcon /> : message.author.name?.[0]}
+				</Avatar>
 				<Stack spacing={1} sx={{ flex: "1 1 auto" }}>
 					<Card
 						sx={{

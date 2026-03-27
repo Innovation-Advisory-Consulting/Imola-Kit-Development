@@ -10,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import { ListIcon } from "@phosphor-icons/react/dist/ssr/List";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/ssr/MagnifyingGlass";
+import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
 import { UsersIcon } from "@phosphor-icons/react/dist/ssr/Users";
 import { useDialog } from "@/hooks/use-dialog";
 import { usePopover } from "@/hooks/use-popover";
@@ -120,8 +121,6 @@ function ContactsButton() {
 
 function UserButton() {
 	const popover = usePopover();
-	const user = { name: "Sofia Rivers", avatar: "/assets/avatar.png" };
-
 	return (
 		<React.Fragment>
 			<Box
@@ -145,7 +144,7 @@ function UserButton() {
 					}}
 					variant="dot"
 				>
-					<Avatar src={user?.avatar}>{user?.name?.[0]}</Avatar>
+					<Avatar><UserIcon /></Avatar>
 				</Badge>
 			</Box>
 			<UserPopover anchorEl={popover.anchorRef.current} onClose={popover.handleClose} open={popover.open} />
