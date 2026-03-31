@@ -219,8 +219,8 @@ export async function fetchEmails({ folder = 'inbox', top = 50 } = {}) {
   if (folder === 'sent') {
     filter = `directioncode eq true and _ownerid_value eq '${systemUserId}'`;
   } else {
-    // Inbox: incoming emails owned by the current user
-    filter = `directioncode eq false and _ownerid_value eq '${systemUserId}'`;
+    // Inbox: all incoming emails owned by or regarding the current user
+    filter = `directioncode eq false and (_ownerid_value eq '${systemUserId}' or _regardingobjectid_value ne null)`;
   }
 
   const params = new URLSearchParams();
@@ -235,8 +235,25 @@ export async function fetchEmails({ folder = 'inbox', top = 50 } = {}) {
   });
 
   if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err?.error?.message || `Dataverse error: ${res.status}`);
+    // If complex filter fails, try simpler query for all incoming emails
+    const simpleParams = new URLSearchParams();
+    simpleParams.set('$select', 'activityid,subject,description,directioncode,statuscode,createdon,modifiedon');
+    simpleParams.set('$expand', 'email_activity_parties($select=participationtypemask,_partyid_value,addressused)');
+    simpleParams.set('$filter', `directioncode eq false`);
+    simpleParams.set('$orderby', 'createdon desc');
+    simpleParams.set('$top', String(top));
+
+    const fallbackRes = await fetch(`${DATAVERSE_URL}/api/data/v9.2/emails?${simpleParams}`, {
+      headers: buildHeaders(token),
+    });
+
+    if (!fallbackRes.ok) {
+      const err = await fallbackRes.json().catch(() => ({}));
+      throw new Error(err?.error?.message || `Dataverse error: ${fallbackRes.status}`);
+    }
+
+    const fallbackData = await fallbackRes.json();
+    return fallbackData.value;
   }
 
   const data = await res.json();

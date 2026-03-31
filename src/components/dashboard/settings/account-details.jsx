@@ -11,11 +11,17 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
 
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { PropertyItem } from "@/components/core/property-item";
 import { PropertyList } from "@/components/core/property-list";
 
 export function AccountDetails() {
-	const user = { name: "Sofia Rivers", avatar: "/assets/avatar.png", email: "sofia@devias.io", username: "sofia.rivers", id: "USR-000" };
+	const currentUser = useCurrentUser();
+	const user = {
+		name: currentUser.name,
+		email: currentUser.email,
+		username: currentUser.email?.split("@")[0] || "",
+	};
 
 	return (
 		<Card>
@@ -32,28 +38,22 @@ export function AccountDetails() {
 			<CardContent>
 				<Stack spacing={3}>
 					<Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
-						<Avatar
-							src={user?.avatar || undefined}
-							sx={{ "--Avatar-size": "80px", fontSize: "2rem" }}
-						>
-							{user?.name ? user.name.charAt(0) : "U"}
+						<Avatar sx={{ "--Avatar-size": "80px", fontSize: "2rem" }}>
+							<UserIcon size={40} />
 						</Avatar>
 						<Stack spacing={0.5}>
-							<Typography variant="h6">{user?.name || "User"}</Typography>
-							{user?.username ? (
-								<Typography variant="body2" color="text.secondary">
-									{user.username}
-								</Typography>
-							) : null}
+							<Typography variant="h6">{user.name}</Typography>
+							<Typography variant="body2" color="text.secondary">
+								{user.username}
+							</Typography>
 							<Chip label="User" size="small" variant="outlined" color="primary" />
 						</Stack>
 					</Stack>
 					<Divider />
 					<PropertyList divider={<Divider />} sx={{ "--PropertyItem-padding": "12px 0" }}>
-						<PropertyItem name="Full Name" value={user?.name || "—"} />
-						<PropertyItem name="Email" value={user?.email || "—"} />
-						<PropertyItem name="Username" value={user?.username || "—"} />
-						<PropertyItem name="User ID" value={user?.id || "—"} />
+						<PropertyItem name="Full Name" value={user.name || "—"} />
+						<PropertyItem name="Email" value={user.email || "—"} />
+						<PropertyItem name="Username" value={user.username || "—"} />
 					</PropertyList>
 				</Stack>
 			</CardContent>

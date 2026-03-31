@@ -68,7 +68,7 @@ export function Plans() {
 						<Card sx={{ borderRadius: 1 }} variant="outlined">
 							<PropertyList divider={<Divider />} sx={{ "--PropertyItem-padding": "12px 24px" }}>
 								{[
-									{ key: "Name", value: "Sofia Rivers" },
+									{ key: "Name", value: "—" },
 									{ key: "Country", value: "Germany" },
 									{ key: "State", value: "Brandenburg" },
 									{ key: "City", value: "Berlin" },

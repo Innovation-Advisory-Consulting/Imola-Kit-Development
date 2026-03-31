@@ -101,7 +101,7 @@ export function ThreadItem({ thread, onDeselect, onSelect, selected, href }) {
 							{thread.subject}
 						</Typography>
 						<Typography color="text.secondary" noWrap variant="body2">
-							—{thread.message}
+							—{(thread.message || "").replace(/<[^>]*>/g, "")}
 						</Typography>
 					</Stack>
 					{hasAnyAttachments ? (

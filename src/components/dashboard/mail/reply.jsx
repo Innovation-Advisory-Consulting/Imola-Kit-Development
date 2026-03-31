@@ -9,18 +9,12 @@ import { ImageIcon } from "@phosphor-icons/react/dist/ssr/Image";
 import { LinkIcon } from "@phosphor-icons/react/dist/ssr/Link";
 import { PaperclipIcon } from "@phosphor-icons/react/dist/ssr/Paperclip";
 import { SmileyIcon } from "@phosphor-icons/react/dist/ssr/Smiley";
-
-const user = {
-	id: "USR-000",
-	name: "Sofia Rivers",
-	avatar: "/assets/avatar.png",
-	email: "sofia@devias.io",
-};
+import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
 
 export function Reply() {
 	return (
 		<Stack direction="row" spacing={2} sx={{ alignItems: "flex-start", flex: "0 0 auto", p: 3 }}>
-			<Avatar src={user.avatar} />
+			<Avatar><UserIcon /></Avatar>
 			<Stack spacing={2} sx={{ flex: "1 1 auto" }}>
 				<OutlinedInput maxRows={7} minRows={3} multiline placeholder="Leave a message" />
 				<Stack direction="row" spacing={3} sx={{ alignItems: "center", justifyContent: "space-between" }}>

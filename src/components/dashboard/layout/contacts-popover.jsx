@@ -11,75 +11,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-
-import { dayjs } from "@/lib/dayjs";
 import { Presence } from "@/components/core/presence";
 
 const contacts = [
 	{
-		id: "USR-010",
-		name: "Alcides Antonio",
-		avatar: "/assets/avatar-10.png",
+		id: "USR-AI",
+		name: "AI Assistant",
+		avatar: "/assets/avatar-ai.svg",
 		status: "online",
-		lastActivity: dayjs().subtract(2, "hour").toDate(),
-	},
-	{
-		id: "USR-003",
-		name: "Carson Darrin",
-		avatar: "/assets/avatar-3.png",
-		status: "away",
-		lastActivity: dayjs().subtract(15, "minute").toDate(),
-	},
-	{ id: "USR-005", name: "Fran Perez", avatar: "/assets/avatar-5.png", status: "busy", lastActivity: dayjs().toDate() },
-	{
-		id: "USR-006",
-		name: "Iulia Albu",
-		avatar: "/assets/avatar-6.png",
-		status: "online",
-		lastActivity: dayjs().toDate(),
-	},
-	{ id: "USR-008", name: "Jie Yan", avatar: "/assets/avatar-8.png", status: "online", lastActivity: dayjs().toDate() },
-	{
-		id: "USR-009",
-		name: "Marcus Finn",
-		avatar: "/assets/avatar-9.png",
-		status: "offline",
-		lastActivity: dayjs().subtract(2, "hour").toDate(),
-	},
-	{
-		id: "USR-001",
-		name: "Miron Vitold",
-		avatar: "/assets/avatar-1.png",
-		status: "online",
-		lastActivity: dayjs().toDate(),
-	},
-	{
-		id: "USR-007",
-		name: "Nasimiyu Danai",
-		avatar: "/assets/avatar-7.png",
-		status: "busy",
-		lastActivity: dayjs().toDate(),
-	},
-	{
-		id: "USR-011",
-		name: "Omar Darobe",
-		avatar: "/assets/avatar-11.png",
-		status: "offline",
-		lastActivity: dayjs().toDate(),
-	},
-	{
-		id: "USR-004",
-		name: "Penjani Inyene",
-		avatar: "/assets/avatar-4.png",
-		status: "online",
-		lastActivity: dayjs().subtract(6, "hour").toDate(),
-	},
-	{
-		id: "USR-002",
-		name: "Siegbert Gottfried",
-		avatar: "/assets/avatar-2.png",
-		status: "away",
-		lastActivity: dayjs().toDate(),
 	},
 ];
 
@@ -112,12 +51,7 @@ export function ContactsPopover({ anchorEl, onClose, open = false }) {
 										</Link>
 									}
 								/>
-								{contact.status === "offline" ? null : <Presence size="small" status={contact.status} />}
-								{contact.status === "offline" && Boolean(contact.lastActivity) ? (
-									<Typography color="text.secondary" sx={{ whiteSpace: "nowrap" }} variant="caption">
-										{dayjs(contact.lastActivity).fromNow()}
-									</Typography>
-								) : null}
+								<Presence size="small" status={contact.status} />
 							</ListItemButton>
 						</ListItem>
 					))}
