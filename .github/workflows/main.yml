@@ -1,1 +1,43 @@
+name: Trigger OKD Build
 
+on:
+  push:
+    branches:
+      - main
+
+env:
+  OKD_NAMESPACE: imola-kit
+  OKD_BUILDCONFIG: imola-kit
+  OKD_DEPLOYMENT: imola-kit
+
+jobs:
+  start-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install oc CLI
+        run: |
+          curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/openshift-client-linux.tar.gz
+          tar -xzf openshift-client-linux.tar.gz
+          sudo mv oc /usr/local/bin/oc
+          oc version --client
+
+      - name: Login to OKD
+        run: |
+          oc login "${{ secrets.OKD_SERVER }}" \
+            --token="${{ secrets.OKD_TOKEN }}" \
+            --insecure-skip-tls-verify=true
+
+      - name: Select project
+        run: oc project $OKD_NAMESPACE
+
+      - name: Start build
+        run: |
+          oc start-build $OKD_BUILDCONFIG --follow --wait
+
+      - name: Verify rollout
+        run: |
+          oc rollout status deployment/$OKD_DEPLOYMENT --timeout=300s
